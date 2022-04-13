@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10"></script>
+        <title>Hello Vue.js</title>
+    </head>
+    <body>
+        <div id="app">
+            <h1 v-bind:title="lorem">{{normal_message}}</h1>
+            <br>
+            <input type="text" v-bind:placeholder="placeholder_message"/>
+            <br>
+            <h1 v-text="vtext_message"></h1>
+            <br>
+            <h1 v-html="vhtml_message"></h1>
+        </div>
+
+        <script>
+            let app = new Vue({
+                el: '#app',
+                data: {
+                    normal_message: "Hello for everybody ✌️",
+                    placeholder_message: "Type somenthing here...",
+                    vtext_message: "Hello for everybody ✌️",
+                    vhtml_message: "<b>Hello for everybody ✌️</b>",
+                    lorem: "Irure velit proident deserunt dolore. Laborum tempor aliquip occaecat sit aliquip. Ullamco elit aliqua pariatur mollit. Cupidatat tempor fugiat elit qui non excepteur incididunt dolore cupidatat culpa deserunt ex esse enim. Anim ex eiusmod mollit aliqua enim excepteur dolor aute amet laboris. Minim aute nostrud mollit officia nisi sunt do aliquip anim dolor Lorem. Magna ad esse occaecat veniam.",
+                }
+            })
+
+        </script>
+    </body>
+</html>
