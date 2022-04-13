@@ -5,28 +5,71 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <title>Hello Vue.js</title>
     </head>
     <body>
         <div id="app">
-            <h1 v-bind:title="lorem">{{normal_message}}</h1>
-            <br>
-            <input type="text" v-bind:placeholder="placeholder_message"/>
-            <br>
-            <h1 v-text="vtext_message"></h1>
-            <br>
-            <h1 v-html="vhtml_message"></h1>
+            <h1 v-html="titulo"></h1>
+            <ul v-for="estagiario in estagiarios">
+                <li><b>Nome: </b>{{ estagiario.nome }}</li>
+                <li><b>Idade: </b>{{ estagiario.idade }}</li>
+                <li><b>Função: </b>{{ estagiario.funcao }}</li>
+                <li><b>Ensino Superior: </b>{{ estagiario.ensino_superior }}</li>
+                <li><b>Usuários do Github: </b>{{ estagiario.github_user }}</li>
+            </ul>
         </div>
 
         <script>
             let app = new Vue({
                 el: '#app',
                 data: {
-                    normal_message: "Hello for everybody ✌️",
-                    placeholder_message: "Type somenthing here...",
-                    vtext_message: "Hello for everybody ✌️",
-                    vhtml_message: "<b>Hello for everybody ✌️</b>",
-                    lorem: "Irure velit proident deserunt dolore. Laborum tempor aliquip occaecat sit aliquip. Ullamco elit aliqua pariatur mollit. Cupidatat tempor fugiat elit qui non excepteur incididunt dolore cupidatat culpa deserunt ex esse enim. Anim ex eiusmod mollit aliqua enim excepteur dolor aute amet laboris. Minim aute nostrud mollit officia nisi sunt do aliquip anim dolor Lorem. Magna ad esse occaecat veniam.",
+                    titulo: "<b>Estagiários da Prevision do Q2</b>",
+                    estagiarios: [
+                        {
+                            nome: "Mateus",
+                            idade: 20,
+                            funcao: "Estágiario em Desenvolvimento",
+                            ensino_superior: "Ciência da Computação",
+                            github_user: "mat-eus"
+                        },
+                        {
+                            nome: "Firmino",
+                            idade: 19,
+                            funcao: "Estágiario em Desenvolvimento",
+                            ensino_superior: "Enmgenharia de Software",
+                            github_user: "firminoandre"
+                        },
+                        {
+                            nome: "Marcelo",
+                            idade: 24,
+                            funcao: "Estágiario em Desenvolvimento",
+                            ensino_superior: "Ciência da Computação",
+                            github_user: "marceloEdivan"
+                        },
+                        {
+                            nome: "Kyioshi",
+                            idade: 22,
+                            funcao: "Estágiario em Desenvolvimento",
+                            ensino_superior: "Ciência da Computação",
+                            github_user: "ekmiyabe"
+                        },
+                        {
+                            nome: "Samuel",
+                            idade: 19,
+                            funcao: "Estágiario em Desenvolvimento",
+                            ensino_superior: "Sistemas de Informação",
+                            github_user: "samuelfilipeprevision"
+                        }
+                    ]
+                },
+                mounted(){
+                    this.estagiarios.forEach(intern => {
+                        axios.get(`https://api.github.com/users/${intern.github_user}`).then(       response => {
+                                console.log(response.data.avatar_url);
+                            }
+                        )
+                    });
                 }
             })
 
